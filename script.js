@@ -1,4 +1,4 @@
-// Last.fm config (merged from lastfm-config.js)
+// Last.fm config
 const LASTFM = {
     apiKey: "66bbe94145bf8ba917f60045593cfa4a",
     username: "LyricSantana"
