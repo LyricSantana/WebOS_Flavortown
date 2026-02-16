@@ -1,5 +1,8 @@
-// Get the last.fm info from config file (API key and Username)
-const LASTFM = window.LASTFM_CONFIG;
+// Last.fm config (merged from lastfm-config.js)
+const LASTFM = {
+    apiKey: "66bbe94145bf8ba917f60045593cfa4a",
+    username: "LyricSantana"
+};
 
 // Update the clock text in the top bar
 
