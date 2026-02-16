@@ -71,5 +71,5 @@ updateTime();
 fetchLastPlayed();
 // Keep the time updated every second
 setInterval(updateTime, 1000);
-// Refresh the song every 10 seconds
-setInterval(fetchLastPlayed, 10000);
+// Refresh the song every 60 seconds
+setInterval(fetchLastPlayed, 60000);
