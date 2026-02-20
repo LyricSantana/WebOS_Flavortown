@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<htmla lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,30 +10,32 @@
 </head>
 <body>
     <div class="topBar">
-        <p><strong>LyricOS v0.1.0</strong></p>
+        <p><strong>LyricOS v0.2.1</strong></p>
         <p id="time"><strong>1/9/2025 8:04:00 PM</strong></p>
         <p id="lastPlayed">
             <strong>Last Played Song:</strong>
             <span id="lastPlayedTrack">Loading...</span>
         </p>
     </div>
-    <div class="window">
-        <h1>Desktop window</h1>
-        <h2>Introduction</h2>
-        <p>My name is Lyric Santana, a student and computer nerd located in Spokane, Washington in the United States</p>
-        <h2>Interests</h2>
-        <list>
-            <li>Music</li>
-            <li>Anything computer related(Programming, Cybersecurity, etc.)</li>
-            <li>Art</li>
-            <li>Crochet</li>
-            <li><img src="favicon.ico" id="happy"></li>
-        </list><br>
-        <s>Strike Through</s>
-        <p>break the <br> line like this</p>
-        <p>use strong to <strong>bold text</strong></p>
-        <p><dfn>DFN Tag</dfn> is a tag that marks something being defined</p>
-        <p><abbr title="abbreviation">abbr</abbr> is a tag that marks an abbreviated term</p>
+    <!-- Desktop Icons -->
+    <!-- About me / test icon -->
+    <button class="desktopIcon" id="aboutMeIcon" type="button">
+        <img src="favicon.ico" class="desktopIconImage">
+        <span class="desktopIconLabel">About Me</span>
+    </button>
+
+    <div class="window" id="aboutMeWindow" style="top: 120px; left: 120px; display: none;">
+        <div class="windowheader" id="aboutMeHeader">
+            <p class="headertext">About Me</p>
+            <div class="closebutton" id="aboutMeClose" aria-label="Close window"></div>
+        </div>
+        <h2>Intro</h2>
+                <p>Hi! My name is <strong>Lyric S.</strong> (she/her, they/them). <br>
+                    I am pansexual and transgender and a furry/kemonomimi :D <br>
+                    I'm online pretty often, so my DMs are open if you ever need to talk or just want to say hi! <br>
+                    Please check out the rest of my projects and interests on this website!</p>
     </div>
 </body>
 </html>
+
+a

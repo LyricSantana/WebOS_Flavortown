@@ -28,19 +28,106 @@ body {
     margin-left: 6px;
 }
 
-.window {
-    border: solid; 
-    width: 512px; 
-    border-radius: 12px; 
-    padding: 0px 30px;
-    position:absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #ffffff;
+.desktopIcon {
+    position: absolute;
+    top: 120px;
+    left: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+    backdrop-filter: none;
 }
 
+.desktopIcon:hover {
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(6px);
+}
+
+.desktopIconImage {
+    width: 56px;
+    height: 56px;
+}
+
+.desktopIconLabel {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.window {
+    border: solid;
+    width: 500px;
+    border-radius: 12px;
+    padding: 0 15px 0 30px;
+    position: absolute;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+
+.windowheader {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: grab;
+    /* user-select: none; */
+    margin: 12px -15px 8px -30px;
+    padding: 0 15px 8px 30px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.25);
+}
+
+.headertext {
+    font-size: 24px;
+    margin: 0 2px;
+    font-weight: 600;
+}
+
+.closebutton {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    background-color: #ec6b5e;
+    border-radius: 20px;
+    border: solid 1px rgba(0, 0, 0, 0.25);
+}
+
+.closebutton:hover {
+    background-color: #e0968d;
+}
+
+.closebutton::before,
+.closebutton::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 2px;
+    background-color: #7a0000;
+    transform-origin: center;
+}
+
+.closebutton::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.closebutton::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
 #happy {
     width: 100px;
     height: 100px
+}
+
+.window h2 {
+    margin: 6px 0 3px 0;
 }

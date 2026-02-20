@@ -21,6 +21,7 @@ function formatTrack(track) {
     };
 }
 
+// escape html characters to prevent injection issues
 function escapeHtml(value) {
     return String(value)
     .replace(/&/g, "&amp;")
@@ -73,3 +74,73 @@ fetchLastPlayed();
 setInterval(updateTime, 1000);
 // Refresh the song every 60 seconds
 setInterval(fetchLastPlayed, 60000);
+
+// Get references to the about me window and its controls
+var aboutMeWindow = document.querySelector("#aboutMeWindow");
+var aboutMeClose = document.querySelector("#aboutMeClose");
+var aboutMeOpen = document.querySelector("#aboutMeIcon");
+var aboutMeHeader = document.querySelector("#aboutMeHeader");
+
+// hide a window element
+function closeWindow(element) {
+    element.style.display = "none";
+}
+
+// show a window element
+function openWindow(element) {
+    element.style.display = "flex";
+}
+
+// make an element draggable by its handle or itself
+function dragElement(element, handle) {
+    if (!element) {
+        return;
+    }
+
+    var initialX = 0;
+    var initialY = 0;
+    var currentX = 0;
+    var currentY = 0;
+    var header = handle;
+
+        header.onmousedown = startDragging;
+
+
+    function startDragging(e) {
+        e.preventDefault();
+        initialX = e.clientX;
+        initialY = e.clientY;
+        document.onmouseup = stopDragging;
+        document.onmousemove = handleDrag;
+    }
+
+    function handleDrag(e) {
+        e.preventDefault();
+        currentX = initialX - e.clientX;
+        currentY = initialY - e.clientY;
+        initialX = e.clientX;
+        initialY = e.clientY;
+        element.style.top = (element.offsetTop - currentY) + "px";
+        element.style.left = (element.offsetLeft - currentX) + "px";
+    }
+
+    function stopDragging() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+}
+
+dragElement(aboutMeWindow, aboutMeHeader);
+
+// set up event listeners for opening and closing the about me window
+if (aboutMeClose) {
+    aboutMeClose.addEventListener("click", function() {
+        closeWindow(aboutMeWindow);
+    });
+}
+
+if (aboutMeOpen) {
+    aboutMeOpen.addEventListener("click", function() {
+        openWindow(aboutMeWindow);
+    });
+}
