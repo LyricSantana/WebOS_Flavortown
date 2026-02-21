@@ -1,41 +1,266 @@
 <!DOCTYPE html>
 <htmla lang="en">
 <head>
+    <!-- Standard meta tags and stuff -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/favicon.ico">
+    <!-- Styles and scripts -->
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
     <title>LyricOS</title>
 </head>
+
+<!-- This website is a MESS. I don't know how i managed to get any of this to work. It's being held together with duct tape and a dream right now. good luck! -->
+
 <body>
-    <div class="topBar">
-        <p><strong>LyricOS v0.2.1</strong></p>
-        <p id="time"><strong>1/9/2025 8:04:00 PM</strong></p>
-        <p id="lastPlayed">
-            <strong>Last Played Song:</strong>
-            <span id="lastPlayedTrack">Loading...</span>
-        </p>
+    <!-- Lock Screen - Swipe or click to unlock -->
+    <div id="lockScreen" class="lockScreen">
+        <div class="lockScreenContent">
+            <p id="lockScreenTime" class="lockScreenTime"><strong>8:04:00 PM</strong></p>
+            <p class="welcomeMessage">Welcome to LyricOS</p>
+            <div class="unlockPrompt">
+                <button id="unlockButton" class="unlockButton" aria-label="Unlock screen">
+                    <svg class="upArrow" viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="18 15 12 9 6 15"></polyline>
+                    </svg>
+                </button>
+                <p class="unlockText">Swipe up or click to unlock</p>
+            </div>
+        </div>
+        <!-- Credit for wallpaper -->
+        <a href="https://www.artstation.com/artwork/lRlPwe" target="_blank" class="wallpaperCredit" title="Wallpaper by Surendra Rajawat">Wallpaper by<br>Surendra Rajawat</a>
     </div>
-    <!-- Desktop Icons -->
+
+    <!-- Center time display - shows up after unlocking -->
+    <div id="centerTime">
+        <p id="displayTime"><strong>8:04:00 PM</strong></p>
+    </div>
+    <!-- Desktop Icons - Left side for main content -->
     <!-- About me / test icon -->
     <button class="desktopIcon" id="aboutMeIcon" type="button">
         <img src="favicon.ico" class="desktopIconImage">
         <span class="desktopIconLabel">About Me</span>
     </button>
 
-    <div class="window" id="aboutMeWindow" style="top: 120px; left: 120px; display: none;">
+    <!-- Music icon -->
+    <button class="desktopIcon" id="musicIcon" type="button">
+        <img src="favicon.ico" class="desktopIconImage">
+        <span class="desktopIconLabel">My Music</span>
+    </button>
+
+    <!-- Media icon -->
+    <button class="desktopIcon" id="mediaIcon" type="button">
+        <img src="favicon.ico" class="desktopIconImage">
+        <span class="desktopIconLabel">Media</span>
+    </button>
+
+    <!-- Right side icons - Games section -->
+    <!-- Snake Game icon -->
+    <button class="desktopIcon" id="snakeIcon" type="button">
+        <img src="favicon.ico" class="desktopIconImage">
+        <span class="desktopIconLabel">Snake</span>
+    </button>
+
+    <!-- Flappy Bird Game icon -->
+    <button class="desktopIcon" id="flappyIcon" type="button">
+        <img src="favicon.ico" class="desktopIconImage">
+        <span class="desktopIconLabel">Flappy Bird</span>
+    </button>
+
+    <!-- Dino Jump Run Game icon -->
+    <button class="desktopIcon" id="dinoIcon" type="button">
+        <img src="favicon.ico" class="desktopIconImage">
+        <span class="desktopIconLabel">Dino Jump</span>
+    </button>
+
+    <!-- Interests icon -->
+    <button class="desktopIcon" id="interestsIcon" type="button">
+        <img src="favicon.ico" class="desktopIconImage">
+        <span class="desktopIconLabel">Interests</span>
+    </button>
+
+    <!-- Contact icon -->
+    <button class="desktopIcon" id="contactIcon" type="button">
+        <img src="favicon.ico" class="desktopIconImage">
+        <span class="desktopIconLabel">Contact</span>
+    </button>
+
+    <!-- Window Elements - These are the windows that pop up -->
+    <!-- About Me Window -->
+    <div class="window" id="aboutMeWindow">
         <div class="windowheader" id="aboutMeHeader">
             <p class="headertext">About Me</p>
             <div class="closebutton" id="aboutMeClose" aria-label="Close window"></div>
         </div>
-        <h2>Intro</h2>
-                <p>Hi! My name is <strong>Lyric S.</strong> (she/her, they/them). <br>
-                    I am pansexual and transgender and a furry/kemonomimi :D <br>
-                    I'm online pretty often, so my DMs are open if you ever need to talk or just want to say hi! <br>
-                    Please check out the rest of my projects and interests on this website!</p>
+        <h2>Introduction</h2>
+        <p>:33 < Hi! My name is <strong>Lyric S.</strong> (she/her, they/them).<br><br>
+        I'm a student, developer, and roboticist located in Spokane, Washington!<br><br>
+        I love anything computer-related (Computer Science, Cybersecurity, Networking, Hardware, Electronics, etc)<br><br>
+        I'm a huge nerd, talk to me about anything, I'll listen!<br><br>
+        I am pansexual, transgender, and a furry/kemonomimi :D<br><br>
+        I'm only online sometimes, but I check my messages regularly, so feel free to reach out if you ever wanna talk or just want to say hi!<br><br>
+        Please check out the rest of my projects and interests on this website!</p>
+    </div>
+
+    <!-- Music Window - Pulls from Last.fm API to show what I'm listening to -->
+    <div class="window" id="musicWindow">
+        <div class="windowheader" id="musicHeader">
+            <p class="headertext">My Music</p>
+            <div class="closebutton" id="musicClose" aria-label="Close window"></div>
+        </div>
+        <div class="musicWindowContent">
+            <h3><strong>Most Recently Played:</strong></h3>
+            <img id="albumCover" src="" class="albumCover">
+            <p><span id="musicTrack">Loading...</span></p>
+            
+            <h3>Favorite Artists</h3>
+            <div class="artistsGrid">
+                <span class="artist"><strong>Will Wood</strong></span>
+                <span class="artist"><strong>Tally Hall</strong></span>
+                <span class="artist"><strong>Vylet Pony</strong></span>
+                <span class="artist"><strong>Femtanyl</strong></span>
+                <span class="artist">Stomach Book</span>
+                <span class="artist">Food House</span>
+                <span class="artist">FEM&M</span>
+                <span class="artist">Tanger</span>
+                <span class="artist"><strong>100 Gecs</strong></span>
+                <span class="artist">Ken Ashcorp</span>
+                <span class="artist"><strong>ISSBROKIE</strong></span>
+                <span class="artist">Mitski</span>
+                <span class="artist">Cavetown</span>
+                <span class="artist">Yaelokre</span>
+                <span class="artist"><strong>Jack Stauber</strong></span>
+                <span class="artist"><strong>Lemon Demon</strong></span>
+                <span class="artist"><strong>Miracle Musical</strong></span>
+                <span class="artist">Girl in Red</span>
+                <span class="artist">The Crane Wives</span>
+                <span class="artist">Madilyn Mei</span>
+                <span class="artist">Penelope Scott</span>
+                <span class="artist"><strong>Much, Much More</strong></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Media Window - Shows, movies, and other media i like -->
+    <div class="window" id="mediaWindow">
+        <div class="windowheader" id="mediaHeader">
+            <p class="headertext">Media</p>
+            <div class="closebutton" id="mediaClose" aria-label="Close window"></div>
+        </div>
+        <h3>Media I Like :D</h3>
+        <div class="mediaGrid">
+            <span class="media"><strong>Homestuck</strong></span>
+            <span class="media">I Saw the TV Glow</span>
+            <span class="media"><strong>Gravity Falls</strong></span>
+            <span class="media"><strong>Adventure Time</strong></span>
+            <span class="media"><strong>Fionna and Cake</strong></span>
+            <span class="media">Amphibia</span>
+            <span class="media"><strong>The Owl House</strong></span>
+            <span class="media">Star vs. the Forces of Evil</span>
+            <span class="media"><strong>The Amazing Digital Circus</strong></span>
+            <span class="media">Murder Drones</span>
+            <span class="media">Good Omens</span>
+            <span class="media">Ramshackle</span>
+            <span class="media">Scott Pilgrim</span>
+            <span class="media">Don't Hug Me I'm Scared</span>
+            <span class="media"><strong>Alien Stage</strong></span>
+            <span class="media"><strong>Much more, I just can't remember right now :/</strong></span>
+        </div>
+    </div>
+
+    <!-- Game Windows - Coming soon! Maybe. Eventually. If I get around to it loll -->
+    <!-- Snake Game Window -->
+    <div class="window" id="snakeWindow">
+        <div class="windowheader" id="snakeHeader">
+            <p class="headertext">Snake</p>
+            <div class="closebutton" id="snakeClose" aria-label="Close window"></div>
+        </div>
+        <div class="gameContainer">
+            <p>Snake game coming soon!</p>
+        </div>
+    </div>
+
+    <!-- Flappy Bird Game Window -->
+    <div class="window" id="flappyWindow">
+        <div class="windowheader" id="flappyHeader">
+            <p class="headertext">Flappy Bird</p>
+            <div class="closebutton" id="flappyClose" aria-label="Close window"></div>
+        </div>
+        <div class="gameContainer">
+            <p>Flappy Bird game coming soon!</p>
+        </div>
+    </div>
+
+    <!-- Dino Jump Run Game Window -->
+    <div class="window" id="dinoWindow">
+        <div class="windowheader" id="dinoHeader">
+            <p class="headertext">Dino Jump Run</p>
+            <div class="closebutton" id="dinoClose" aria-label="Close window"></div>
+        </div>
+        <div class="gameContainer">
+            <p>Dino Jump Run game coming soon!</p>
+        </div>
+    </div>
+
+    <!-- Interests Window - All the stuff I'm into -->
+    <div class="window" id="interestsWindow">
+        <div class="windowheader" id="interestsHeader">
+            <p class="headertext">Interests</p>
+            <div class="closebutton" id="interestsClose" aria-label="Close window"></div>
+        </div>
+        
+        <h3>Interests, Hobbies, & Skills</h3>
+        <div class="interestsGrid">
+            <span class="interest"><strong>Linux (I use Arch BTW!)</strong></span>
+            <span class="interest"><strong>Computer Science</strong></span>
+            <span class="interest"><strong>Cybersecurity</strong></span>
+            <span class="interest"><strong>Networking</strong></span>
+            <span class="interest"><strong>Programming</strong></span>
+            <span class="interest"><strong>Game Development</strong></span>
+            <span class="interest"><strong>Engineering (Electrical, Computer, etc.)</strong></span>
+            <span class="interest">PCB design</span>
+            <span class="interest"><strong>Robotics (FRC team 10416!!!)</strong></span>
+            <span class="interest">Soldering</span>
+            <span class="interest"><strong>Web development</strong></span>
+            <span class="interest">Embedded systems</span>
+            <span class="interest">Crochet</span>
+            <span class="interest">Embroidery</span>
+            <span class="interest"><strong>Art (Digital & Painting)</strong></span>
+            <span class="interest">Sewing</span>
+            <span class="interest">Violin</span>
+            <span class="interest"><strong>Baking</strong></span>
+            <span class="interest">Cooking</span>
+            <span class="interest">Crafts</span>
+            <span class="interest">Furries</span>
+            <span class="interest">Kemonomimis</span>
+            <span class="interest">Oddities (Bones, Insects, Taxidermy, etc.)</span>
+        </div>
+    </div>
+
+    <!-- Contact Window - Find me on all the platforms I never post on lol -->
+    <div class="window" id="contactWindow">
+        <div class="windowheader" id="contactHeader">
+            <p class="headertext">Contact</p>
+            <div class="closebutton" id="contactClose" aria-label="Close window"></div>
+        </div>
+        <h3>Find Me Online! (I almost never post anywhere lol)</h3>
+        <div class="contactLinks">
+            <a href="mailto:lyricksantana@gmail.com" class="contactLink" target="_blank">Email: LyricKSantana@gmail.com</a>
+            <a href="https://www.tiktok.com/@enderr1094?_r=1&_t=ZT-944PbaL04A2" class="contactLink" target="_blank">TikTok</a>
+            <a href="https://youtube.com/@raine_storm0?si=xECNgowVZWa0lALO" class="contactLink" target="_blank">YouTube</a>
+            <a href="https://pin.it/6A0CMnIqG" class="contactLink" target="_blank">Pinterest</a>
+            <a href="https://www.instagram.com/wordsinasong09?igsh=ZGNuaTR6aGE5NDVy&utm_source=qr" class="contactLink" target="_blank">Instagram</a>
+            <a href="https://www.tumblr.com/ender1094?source=share" class="contactLink" target="_blank">Tumblr</a>
+            <a href="https://mastodon.social/@Ra1n3St0rm" class="contactLink" target="_blank">Mastodon</a>
+            <a href="https://bsky.app/profile/raine-st0rm.bsky.social" class="contactLink" target="_blank">Bluesky</a>
+        </div>
+    </div>
+
+    <!-- Bottom taskbar - Shows OS version (Random numbers I keep changing by some random amount whenever i feel like it) and date -->
+    <div class="bottomBar">
+        <p id="lyricOS"><strong>LyricOS v0.4.2</strong></p>
+        <p id="bottomDate"><strong>1/9/2025</strong></p>
     </div>
 </body>
 </html>
-
-a
