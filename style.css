@@ -315,12 +315,12 @@ body {
     width: clamp(90vw, 90%, 500px);
     max-width: 90vw;
     max-height: 90vh;
-    padding: 0 clamp(15px, 3vw, 30px);
     background-color: #ffffff;
     border: 2px solid #dddddd;
     border-radius: 12px;
     z-index: 10;
     overflow-y: auto;
+    overflow: hidden;
 }
 
 #aboutMeWindow {
@@ -398,21 +398,20 @@ body {
 }
 
 .windowheader {
-    width: 100%;
+    width: calc(100% + clamp(30px, 6vw, 60px));
+    margin-left: clamp(-15px, -3vw, -30px);
+    margin-right: clamp(-15px, -3vw, -30px);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 0 clamp(-15px, -3vw, -30px);
-    padding: 0 clamp(15px, 3vw, 30px);
+    padding: clamp(8px, 1.5vh, 12px) clamp(15px, 3vw, 30px);
     background-color: #e8e8e8;
     border-bottom: 2px solid rgba(42, 42, 42, 0.25);
     border-radius: 12px 12px 0 0;
     cursor: grab;
     min-height: clamp(40px, 8vh, 50px);
-    padding-top: clamp(8px, 1.5vh, 12px);
-    padding-bottom: clamp(8px, 1.5vh, 12px);
-    touch-action: none;
     user-select: none;
+    flex-shrink: 0;
 }
 
 .headertext {
@@ -429,13 +428,15 @@ body {
     border-radius: 50%;
     cursor: pointer;
     position: relative;
-    margin-right: clamp(-12px, -2vw, -18px);
+    margin-right: clamp(5px, 1vw, 10px);
     flex-shrink: 0;
     min-width: 36px;
     min-height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
+    touch-action: manipulation;
+    z-index: 11;
 }
 
 .closebutton:hover {
@@ -464,22 +465,24 @@ body {
 .window h2 {
     margin: clamp(4px, 1vh, 6px) 0 clamp(2px, 0.5vh, 3px);
     font-size: clamp(16px, 3vw, 22px);
+    padding: 0 clamp(15px, 3vw, 30px);
 }
 
 .window h3 {
     margin: clamp(10px, 2vh, 15px) 0 clamp(6px, 1.5vh, 10px);
     font-size: clamp(14px, 2.5vw, 18px);
     font-weight: 600;
+    padding: 0 clamp(15px, 3vw, 30px);
 }
 
 .window p {
-    padding: clamp(6px, 1.5vh, 10px) 0;
+    padding: clamp(6px, 1.5vh, 10px) clamp(15px, 3vw, 30px);
     font-size: clamp(12px, 2vw, 16px);
     line-height: 1.5;
 }
 
 .gameContainer {
-    padding: clamp(15px, 2vh, 20px);
+    padding: clamp(15px, 2vh, 20px) clamp(15px, 3vw, 30px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -490,6 +493,7 @@ body {
 
 .musicWindowContent {
     text-align: center;
+    padding: 0 clamp(15px, 3vw, 30px);
 }
 
 .albumCover {
@@ -566,7 +570,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0;
-    padding: 0;
+    padding: clamp(15px, 2vh, 20px) clamp(15px, 3vw, 30px);
 }
 
 .presetsSection,
@@ -575,6 +579,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0;
+    margin-bottom: clamp(12px, 2vh, 15px);
 }
 
 .presetsGrid {

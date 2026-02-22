@@ -218,6 +218,8 @@ function dragElement(element, handle) {
     header.addEventListener('touchstart', startDraggingTouch, false);
 
     function startDraggingMouse(e) {
+        // Don't drag if clicking on close button
+        if (e.target.closest('.closebutton')) return;
         if (e.button !== 0) return; // Only left mouse button
         e.preventDefault();
         initialX = e.clientX;
@@ -228,6 +230,8 @@ function dragElement(element, handle) {
     }
 
     function startDraggingTouch(e) {
+        // Don't drag if touching on close button
+        if (e.target.closest('.closebutton')) return;
         if (e.touches.length !== 1) return;
         e.preventDefault();
         var touch = e.touches[0];
