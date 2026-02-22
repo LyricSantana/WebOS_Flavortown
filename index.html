@@ -239,7 +239,18 @@
             <div class="closebutton" id="flappyClose" aria-label="Close window"></div>
         </div>
         <div class="gameContainer">
-            <p>Flappy Bird game coming soon!</p>
+            <div class="flappyGameUI">
+                <div class="flappyControls">
+                    <div class="flappyScore">Score: <span id="flappyScoreValue">0</span></div>
+                    <div class="flappyScore">High Score: <span id="flappyHighScoreValue">0</span></div>
+                    <div>
+                        <button id="flappyStartBtn" class="gameButton">Start</button>
+                        <button id="flappyRestartBtn" class="gameButton" style="display: none;">Restart</button>
+                    </div>
+                </div>
+                <canvas id="flappyCanvas" width="400" height="500"></canvas>
+                <div class="flappyInstructions">Click, Tap, or Press Space to fly</div>
+            </div>
         </div>
     </div>
 
@@ -260,7 +271,7 @@
                     </div>
                 </div>
                 <canvas id="dinoCanvas" width="600" height="200"></canvas>
-                <div class="dinoInstructions">Space or Click to Jump</div>
+                <div class="dinoInstructions">Space or Tap to Jump</div>
             </div>
         </div>
     </div>
@@ -353,7 +364,7 @@
 
     <!-- Bottom taskbar - Shows OS version (Random numbers I keep changing by some random amount whenever i feel like it) and date -->
     <div class="bottomBar">
-        <p id="lyricOS"><strong>LyricOS v0.5.5</strong></p>
+        <p id="lyricOS"><strong>LyricOS v0.6.2</strong></p>
         <p id="bottomDate"><strong>1/9/2025</strong></p>
     </div>
 </body>
