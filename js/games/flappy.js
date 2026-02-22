@@ -18,7 +18,7 @@ const flappyGame = {
     pipes: [],
     pipeWidth: 60,
     pipeGap: 150,
-    pipeSpacing: 200,
+    pipeSpacing: 280,
     
     score: 0,
     highScore: 0,

@@ -11,7 +11,7 @@ const dinoGame = {
         height: 40,
         velocityY: 0,
         jumping: false,
-        jumpPower: 6,
+        jumpPower: 10,
         color: '#8B4513',
         image: null
     },
@@ -21,10 +21,11 @@ const dinoGame = {
     gameRunning: false,
     gameSpeed: 3,
     baseGameSpeed: 3,
-    gravity: 0.15,
+    gravity: 0.5,
     spawnRate: 120,
     frameCount: 0,
     isInitialized: false,
+    spacebarDebounce: 0,
 
     init() {
         if (this.isInitialized) return;
@@ -45,9 +46,13 @@ const dinoGame = {
     setupControls() {
         // keyboard controls
         document.addEventListener('keydown', (e) => {
-            if (e.code === 'Space' && this.gameRunning && !this.dino.jumping) {
+            if (e.code === 'Space') {
                 e.preventDefault();
-                this.jump();
+                const now = Date.now();
+                if (now - this.spacebarDebounce > 100 && this.gameRunning && !this.dino.jumping) {
+                    this.spacebarDebounce = now;
+                    this.jump();
+                }
             }
         });
 
@@ -114,7 +119,7 @@ const dinoGame = {
 
     spawnObstacleGroup() {
         const groupSize = Math.random() < 0.6 ? 1 : (Math.random() < 0.7 ? 2 : 3);
-        const spacing = 25;
+        const spacing = 20;
 
         for (let i = 0; i < groupSize; i++) {
             this.obstacles.push({
