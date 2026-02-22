@@ -11,7 +11,7 @@ const dinoGame = {
         height: 40,
         velocityY: 0,
         jumping: false,
-        jumpPower: 11,
+        jumpPower: 6,
         color: '#8B4513',
         image: null
     },
@@ -19,9 +19,9 @@ const dinoGame = {
     score: 0,
     highScore: 0,
     gameRunning: false,
-    gameSpeed: 6,
-    baseGameSpeed: 6,
-    gravity: 0.6,
+    gameSpeed: 3,
+    baseGameSpeed: 3,
+    gravity: 0.15,
     spawnRate: 120,
     frameCount: 0,
     isInitialized: false,
@@ -72,8 +72,8 @@ const dinoGame = {
 
     startGame() {
         this.reset();
-        this.baseGameSpeed = 6;
-        this.gameSpeed = 6;
+        this.baseGameSpeed = 3;
+        this.gameSpeed = 3;
         this.gameRunning = true;
         this.gameLoop();
     },
@@ -84,8 +84,8 @@ const dinoGame = {
         this.dino.y = 130;
         this.obstacles = [];
         this.frameCount = 0;
-        this.baseGameSpeed = 6;
-        this.gameSpeed = 6;
+        this.baseGameSpeed = 4;
+        this.gameSpeed = 4;
         this.spawnRate = 120;
         this.score = 0;
         this.updateScoreDisplay();
@@ -130,7 +130,7 @@ const dinoGame = {
     update() {
         if (!this.gameRunning) return;
 
-        this.gameSpeed = this.baseGameSpeed + (this.score * 0.1);
+        this.gameSpeed = this.baseGameSpeed + (this.score * 0.05);
 
         // physics
         this.dino.velocityY += this.gravity;
