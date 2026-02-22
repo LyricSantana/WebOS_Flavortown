@@ -12,9 +12,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Styles and scripts -->
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/lockscreen.css">
+    <link rel="stylesheet" href="css/desktop.css">
+    <link rel="stylesheet" href="css/widgets.css">
+    <link rel="stylesheet" href="css/windows.css">
+    <link rel="stylesheet" href="css/wallpaper.css">
+    <link rel="stylesheet" href="css/games.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- Scripts -->
+    <!-- Game and Desktop Core -->
+    <script src="js/games/common.js" defer></script>
+    <script src="js/desktop.js" defer></script>
+    <!-- Features -->
+    <script src="js/music.js" defer></script>
+    <script src="js/weather.js" defer></script>
+    <script src="js/wallpaper.js" defer></script>
+    <!-- games -->
+    <script src="js/games/snake.js" defer></script>
+    <script src="js/games/flappy.js" defer></script>
+    <script src="js/games/dino.js" defer></script>
     <title>LyricOS</title>
 </head>
 
@@ -33,6 +51,13 @@
                     </svg>
                 </button>
                 <p class="unlockText">Swipe up or click arrow to unlock</p>
+            </div>
+        </div>
+        <!-- Weather Widget -->
+        <div class="weatherWidget">
+            <p class="weatherTitle">My weather right now</p>
+            <div id="weatherContent">
+                <p id="weatherLoading">Loading weather...</p>
             </div>
         </div>
         <!-- Credit for Hack Club's Flavortown program -->
@@ -225,7 +250,18 @@
             <div class="closebutton" id="dinoClose" aria-label="Close window"></div>
         </div>
         <div class="gameContainer">
-            <p>Dino Jump Run game coming soon!</p>
+            <div class="dinoGameUI">
+                <div class="dinoControls">
+                    <div class="dinoScore">Score: <span id="dinoScoreValue">0</span></div>
+                    <div class="dinoScore">High Score: <span id="dinoHighScoreValue">0</span></div>
+                    <div>
+                        <button id="dinoStartBtn" class="gameButton">Start</button>
+                        <button id="dinoRestartBtn" class="gameButton" style="display: none;">Restart</button>
+                    </div>
+                </div>
+                <canvas id="dinoCanvas" width="600" height="200"></canvas>
+                <div class="dinoInstructions">Space or Click to Jump</div>
+            </div>
         </div>
     </div>
 
@@ -317,7 +353,7 @@
 
     <!-- Bottom taskbar - Shows OS version (Random numbers I keep changing by some random amount whenever i feel like it) and date -->
     <div class="bottomBar">
-        <p id="lyricOS"><strong>LyricOS v0.4.2</strong></p>
+        <p id="lyricOS"><strong>LyricOS v0.5.5</strong></p>
         <p id="bottomDate"><strong>1/9/2025</strong></p>
     </div>
 </body>

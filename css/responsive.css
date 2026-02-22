@@ -1,0 +1,253 @@
+/* Responsive Design */
+
+/* Mobile devices (320px - 480px) */
+@media (max-width: 480px) {
+    .desktopIcon {
+        left: clamp(5px, 1vw, 10px);
+        gap: 3px;
+        padding: clamp(4px, 1vw, 6px) clamp(6px, 1vw, 8px);
+    }
+
+    .desktopIconImage {
+        width: clamp(40px, 9vw, 50px);
+        height: clamp(40px, 9vw, 50px);
+    }
+
+    .desktopIconLabel {
+        font-size: clamp(9px, 2vw, 12px);
+        max-width: clamp(40px, 9vw, 60px);
+    }
+
+    #aboutMeIcon {
+        top: clamp(5px, 2vh, 20px);
+    }
+
+    #musicIcon {
+        top: clamp(90px, 18vh, 120px);
+    }
+
+    #mediaIcon {
+        top: clamp(170px, 32vh, 220px);
+    }
+
+    #interestsIcon {
+        top: clamp(250px, 46vh, 320px);
+    }
+
+    #contactIcon {
+        top: clamp(330px, 60vh, 410px);
+    }
+
+    #wallpaperIcon {
+        top: clamp(410px, 74vh, 500px);
+    }
+
+    .window {
+        width: 95vw;
+        max-width: 95vw;
+        max-height: 85vh;
+        padding: 0 clamp(10px, 2vw, 15px);
+    }
+
+    .wallpaperCredit,
+    .flavortownNotice {
+        display: none;
+    }
+
+    .bottomBar {
+        gap: clamp(15px, 5vw, 30px);
+        padding: clamp(6px, 1.5vw, 10px) clamp(20px, 5vw, 30px);
+        flex-direction: column;
+    }
+
+    .snakeControls {
+        flex-direction: column;
+        gap: clamp(8px, 1.5vw, 12px);
+    }
+
+    #snakeCanvas {
+        width: clamp(180px, 85vw, 300px);
+        height: clamp(180px, 85vw, 300px);
+    }
+
+    .presetsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .lockScreenTime {
+        font-size: clamp(36px, 12vw, 48px);
+    }
+
+    .welcomeMessage {
+        font-size: clamp(14px, 4vw, 20px);
+    }
+}
+
+/* Small tablets (480px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .desktopIcon {
+        left: clamp(8px, 1.5vw, 16px);
+    }
+
+    .desktopIconImage {
+        width: clamp(50px, 11vw, 65px);
+        height: clamp(50px, 11vw, 65px);
+    }
+
+    .desktopIconLabel {
+        font-size: clamp(10px, 2.2vw, 13px);
+    }
+
+    #musicIcon {
+        top: clamp(110px, 20vh, 150px);
+    }
+
+    #mediaIcon {
+        top: clamp(200px, 36vh, 260px);
+    }
+
+    #interestsIcon {
+        top: clamp(290px, 50vh, 370px);
+    }
+
+    #contactIcon {
+        top: clamp(380px, 64vh, 460px);
+    }
+
+    #wallpaperIcon {
+        top: clamp(470px, 78vh, 550px);
+    }
+
+    .window {
+        width: 90vw;
+        max-width: 90vw;
+        max-height: 85vh;
+    }
+
+    #musicWindow,
+    #mediaWindow,
+    #snakeWindow,
+    #flappyWindow,
+    #dinoWindow,
+    #interestsWindow,
+    #contactWindow,
+    #wallpaperWindow {
+        left: clamp(20px, 5vw, 40px) !important;
+    }
+
+    .presetsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #snakeCanvas {
+        width: clamp(200px, 80vw, 350px);
+        height: clamp(200px, 80vw, 350px);
+    }
+}
+
+/* Tablets and small laptops (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .desktopIcon {
+        left: clamp(12px, 2vw, 20px);
+    }
+
+    .desktopIconImage {
+        width: clamp(60px, 12vw, 70px);
+        height: clamp(60px, 12vw, 70px);
+    }
+
+    #snakeIcon {
+        right: clamp(12px, 2vw, 20px);
+    }
+
+    #flappyIcon {
+        right: clamp(12px, 2vw, 20px);
+    }
+
+    #dinoIcon {
+        right: clamp(12px, 2vw, 20px);
+    }
+
+    .wallpaperCredit {
+        width: clamp(140px, 25vw, 200px);
+        font-size: clamp(12px, 3vw, 16px);
+        top: clamp(20px, 5vw, 80px);
+        right: clamp(15px, 3vw, 40px);
+    }
+
+    .flavortownNotice {
+        width: clamp(140px, 25vw, 200px);
+        font-size: clamp(12px, 3vw, 16px);
+        top: clamp(20px, 5vw, 80px);
+        left: clamp(15px, 3vw, 40px);
+    }
+
+    .presetsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktops and large screens (1025px+) */
+@media (min-width: 1025px) {
+    .desktopIcon {
+        left: 24px;
+    }
+
+    .desktopIconImage {
+        width: 75px;
+        height: 75px;
+    }
+
+    .desktopIconLabel {
+        font-size: 15px;
+    }
+
+    #snakeIcon,
+    #flappyIcon,
+    #dinoIcon {
+        right: 24px;
+    }
+
+    .wallpaperCredit,
+    .flavortownNotice {
+        display: flex;
+    }
+
+    .presetsGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    #displayTime {
+        font-size: 100px;
+    }
+}
+
+/* Ultra-small devices (less than 320px width - rare but covered) */
+@media (max-width: 320px) {
+    .lockScreenTime {
+        font-size: clamp(36px, 12vw, 48px);
+    }
+
+    .welcomeMessage {
+        font-size: clamp(14px, 4vw, 20px);
+    }
+
+    .desktopIcon {
+        left: 5px;
+    }
+
+    .desktopIconImage {
+        width: 35px;
+        height: 35px;
+    }
+
+    .window {
+        width: 98vw;
+        max-height: 80vh;
+    }
+
+    .bottomBar {
+        font-size: 11px;
+        padding: 6px 15px;
+    }
+}

@@ -1,0 +1,160 @@
+/* Game Styles */
+.snakeGameUI {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(8px, 1.5vw, 10px);
+    padding: clamp(10px, 1.5vh, 15px);
+    width: 100%;
+}
+
+.snakeControls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(10px, 2vw, 20px);
+    width: 100%;
+}
+
+.snakeScore {
+    font-size: clamp(16px, 2.5vw, 20px);
+    font-weight: bold;
+    color: #2a2a2a;
+}
+
+#snakeScoreValue {
+    color: #4CAF50;
+}
+
+.gameButton {
+    padding: clamp(8px, 1.5vh, 10px) clamp(15px, 2vw, 20px);
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: clamp(12px, 2vw, 16px);
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gameButton:hover {
+    background-color: #45a049;
+}
+
+.gameButton:active {
+    background-color: #3d8b40;
+}
+
+#snakeCanvas {
+    border: 3px solid #2a2a2a;
+    background-color: #f0f0f0;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    width: clamp(250px, 90vw, 400px);
+    height: clamp(250px, 90vw, 400px);
+}
+
+.snakeInstructions {
+    font-size: clamp(12px, 2vw, 14px);
+    color: #666;
+    font-style: italic;
+    text-align: center;
+}
+
+.dinoGameUI {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(8px, 1.5vw, 10px);
+    padding: clamp(10px, 1.5vh, 15px);
+    width: 100%;
+}
+
+.dinoControls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(10px, 2vw, 20px);
+    width: 100%;
+}
+
+.dinoScore {
+    font-size: clamp(16px, 2.5vw, 20px);
+    font-weight: bold;
+    color: #2a2a2a;
+}
+
+#dinoScoreValue {
+    color: #FF6B6B;
+}
+
+#dinoCanvas {
+    border: 3px solid #2a2a2a;
+    background-color: #87CEEB;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    width: clamp(300px, 90vw, 600px);
+    height: clamp(150px, 30vw, 200px);
+}
+
+.dinoInstructions {
+    font-size: clamp(12px, 2vw, 14px);
+    color: #666;
+    font-style: italic;
+    text-align: center;
+}
+
+.flappyGameUI {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(8px, 1.5vw, 10px);
+    padding: clamp(10px, 1.5vh, 15px);
+    width: 100%;
+}
+
+.flappyControls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(10px, 2vw, 20px);
+    width: 100%;
+}
+
+.flappyScore {
+    font-size: clamp(16px, 2.5vw, 20px);
+    font-weight: bold;
+    color: #2a2a2a;
+}
+
+#flappyScoreValue {
+    color: #FFD700;
+}
+
+#flappyCanvas {
+    border: 3px solid #2a2a2a;
+    background-color: #87CEEB;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    width: clamp(250px, 90vw, 400px);
+    height: clamp(250px, 90vw, 400px);
+}
+
+.flappyInstructions {
+    font-size: clamp(12px, 2vw, 14px);
+    color: #666;
+    font-style: italic;
+    text-align: center;
+}

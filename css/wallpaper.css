@@ -1,0 +1,99 @@
+/* Wallpaper Manager Styles */
+.wallpaperContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: clamp(15px, 2vh, 20px) clamp(15px, 3vw, 30px);
+}
+
+.presetsSection,
+.customImageSection,
+.solidColorSection {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: clamp(12px, 2vh, 15px);
+}
+
+.presetsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: clamp(8px, 2vw, 10px);
+}
+
+.presetButton {
+    padding: 0;
+    width: 100%;
+    aspect-ratio: 1;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #dddddd;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0;
+    min-height: clamp(60px, 12vw, 120px);
+}
+
+.presetButton:hover {
+    background-color: #e0e0e0;
+    border-color: #999999;
+}
+
+.presetButton:active {
+    background-color: #d0d0d0;
+    transform: scale(0.98);
+}
+
+.wallpaperUpload {
+    padding: clamp(10px, 2vh, 12px);
+    border: 2px dashed #dddddd;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: clamp(12px, 2vw, 14px);
+}
+
+.wallpaperUpload:hover {
+    border-color: #999999;
+}
+
+.colorPickerContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: clamp(8px, 2vw, 10px);
+}
+
+.wallpaperColorPicker {
+    width: clamp(40px, 15vw, 60px);
+    height: clamp(30px, 8vw, 40px);
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.wallpaperButton {
+    padding: clamp(8px, 1.5vh, 10px) clamp(12px, 2vw, 15px);
+    background-color: #f0f0f0;
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: clamp(12px, 2vw, 14px);
+    transition: all 0.2s ease;
+}
+
+.wallpaperButton:hover {
+    background-color: #e0e0e0;
+    border-color: #666;
+}
+
+.wallpaperButton:active {
+    background-color: #d0d0d0;
+}
+
+.presetsSection p,
+.customImageSection p,
+.solidColorSection p {
+    margin: clamp(4px, 1vh, 5px) 0;
+    font-size: clamp(12px, 2vw, 14px);
+}
