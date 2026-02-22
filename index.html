@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<htmla lang="en">
+<html lang="en">
 <head>
     <!-- Standard meta tags and stuff -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#1a1a2e">
     <link rel="icon" href="/favicon.ico">
     <!-- Styles and scripts -->
     <link rel="stylesheet" href="style.css">
@@ -18,18 +21,20 @@
     <div id="lockScreen" class="lockScreen">
         <div class="lockScreenContent">
             <p id="lockScreenTime" class="lockScreenTime"><strong>8:04:00 PM</strong></p>
-            <p class="welcomeMessage">Welcome to LyricOS</p>
+            <p class="welcomeMessage">Welcome to my website! :D</p>
             <div class="unlockPrompt">
                 <button id="unlockButton" class="unlockButton" aria-label="Unlock screen">
                     <svg class="upArrow" viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2.5">
                         <polyline points="18 15 12 9 6 15"></polyline>
                     </svg>
                 </button>
-                <p class="unlockText">Swipe up or click to unlock</p>
+                <p class="unlockText">Swipe up or click arrow to unlock</p>
             </div>
         </div>
+        <!-- Credit for Hack Club's Flavortown program -->
+        <a href="https://flavortown.hackclub.com/" target="_blank" class="flavortownNotice">Made for Hack Club's<br>Flavortown program<br>for the WebOS sidequest<br><br>2026</a>
         <!-- Credit for wallpaper -->
-        <a href="https://www.artstation.com/artwork/lRlPwe" target="_blank" class="wallpaperCredit" title="Wallpaper by Surendra Rajawat">Wallpaper by<br>Surendra Rajawat</a>
+        <a href="https://rajawats.com/" target="_blank" class="wallpaperCredit" title="Wallpaper by Surendra Rajawat">All Wallpapers by<br>Surendra Rajawat</a>
     </div>
 
     <!-- Center time display - shows up after unlocking -->
@@ -39,51 +44,57 @@
     <!-- Desktop Icons - Left side for main content -->
     <!-- About me / test icon -->
     <button class="desktopIcon" id="aboutMeIcon" type="button">
-        <img src="favicon.ico" class="desktopIconImage">
+        <img src="icons/about.jpg" class="desktopIconImage">
         <span class="desktopIconLabel">About Me</span>
     </button>
 
     <!-- Music icon -->
     <button class="desktopIcon" id="musicIcon" type="button">
-        <img src="favicon.ico" class="desktopIconImage">
+        <img src="icons/music.jpg" class="desktopIconImage">
         <span class="desktopIconLabel">My Music</span>
     </button>
 
     <!-- Media icon -->
     <button class="desktopIcon" id="mediaIcon" type="button">
-        <img src="favicon.ico" class="desktopIconImage">
-        <span class="desktopIconLabel">Media</span>
+        <img src="icons/media.jpg" class="desktopIconImage">
+        <span class="desktopIconLabel">Shows &<br>Movies</span>
     </button>
 
     <!-- Right side icons - Games section -->
     <!-- Snake Game icon -->
     <button class="desktopIcon" id="snakeIcon" type="button">
-        <img src="favicon.ico" class="desktopIconImage">
+        <img src="icons/game.jpg" class="desktopIconImage">
         <span class="desktopIconLabel">Snake</span>
     </button>
 
     <!-- Flappy Bird Game icon -->
     <button class="desktopIcon" id="flappyIcon" type="button">
-        <img src="favicon.ico" class="desktopIconImage">
+        <img src="icons/game.jpg" class="desktopIconImage">
         <span class="desktopIconLabel">Flappy Bird</span>
     </button>
 
     <!-- Dino Jump Run Game icon -->
     <button class="desktopIcon" id="dinoIcon" type="button">
-        <img src="favicon.ico" class="desktopIconImage">
+        <img src="icons/game.jpg" class="desktopIconImage">
         <span class="desktopIconLabel">Dino Jump</span>
     </button>
 
     <!-- Interests icon -->
     <button class="desktopIcon" id="interestsIcon" type="button">
-        <img src="favicon.ico" class="desktopIconImage">
+        <img src="icons/interests.jpg" class="desktopIconImage">
         <span class="desktopIconLabel">Interests</span>
     </button>
 
     <!-- Contact icon -->
     <button class="desktopIcon" id="contactIcon" type="button">
-        <img src="favicon.ico" class="desktopIconImage">
+        <img src="icons/contact.jpg" class="desktopIconImage">
         <span class="desktopIconLabel">Contact</span>
+    </button>
+
+    <!-- Wallpaper icon -->
+    <button class="desktopIcon" id="wallpaperIcon" type="button">
+        <img src="icons/wallpaper.jpg" class="desktopIconImage">
+        <span class="desktopIconLabel">Wallpaper</span>
     </button>
 
     <!-- Window Elements - These are the windows that pop up -->
@@ -145,12 +156,12 @@
     <!-- Media Window - Shows, movies, and other media i like -->
     <div class="window" id="mediaWindow">
         <div class="windowheader" id="mediaHeader">
-            <p class="headertext">Media</p>
+            <p class="headertext">Shows & Movies</p>
             <div class="closebutton" id="mediaClose" aria-label="Close window"></div>
         </div>
-        <h3>Media I Like :D</h3>
+        <h3>Shows and Movies I Like :D</h3>
         <div class="mediaGrid">
-            <span class="media"><strong>Homestuck</strong></span>
+            <span class="media"><strong>Homestuck (Not a show or movie I know...)</strong></span>
             <span class="media">I Saw the TV Glow</span>
             <span class="media"><strong>Gravity Falls</strong></span>
             <span class="media"><strong>Adventure Time</strong></span>
@@ -177,7 +188,18 @@
             <div class="closebutton" id="snakeClose" aria-label="Close window"></div>
         </div>
         <div class="gameContainer">
-            <p>Snake game coming soon!</p>
+            <div class="snakeGameUI">
+                <div class="snakeControls">
+                    <div class="snakeScore">Score: <span id="snakeScoreValue">0</span></div>
+                    <div class="snakeScore">High Score: <span id="snakeHighScoreValue">0</span></div>
+                    <div>
+                        <button id="snakeStartBtn" class="gameButton">Start</button>
+                        <button id="snakeRestartBtn" class="gameButton" style="display: none;">Restart</button>
+                    </div>
+                </div>
+                <canvas id="snakeCanvas" width="400" height="400"></canvas>
+                <div class="snakeInstructions">Use Arrow Keys to move</div>
+            </div>
         </div>
     </div>
 
@@ -254,6 +276,38 @@
             <a href="https://www.tumblr.com/ender1094?source=share" class="contactLink" target="_blank">Tumblr</a>
             <a href="https://mastodon.social/@Ra1n3St0rm" class="contactLink" target="_blank">Mastodon</a>
             <a href="https://bsky.app/profile/raine-st0rm.bsky.social" class="contactLink" target="_blank">Bluesky</a>
+        </div>
+    </div>
+
+    <!-- Wallpaper Changer Window -->
+    <div class="window" id="wallpaperWindow">
+        <div class="windowheader" id="wallpaperHeader">
+            <p class="headertext">Wallpaper</p>
+            <div class="closebutton" id="wallpaperClose" aria-label="Close window"></div>
+        </div>
+        <h3>Change Wallpaper</h3>
+        <div class="wallpaperContainer">
+            <div class="presetsSection">
+                <p><strong>Presets:</strong></p>
+                <div class="presetsGrid">
+                    <button class="presetButton" data-preset="wallpapers/wallpaper1.png" title="Wallpaper 1"></button>
+                    <button class="presetButton" data-preset="wallpapers/wallpaper2.png" title="Wallpaper 2"></button>
+                    <button class="presetButton" data-preset="wallpapers/wallpaper3.png" title="Wallpaper 3"></button>
+                </div>
+            </div>
+
+            <div class="customImageSection">
+                <p><strong>Upload Custom Image:</strong></p>
+                <input type="file" id="wallpaperUpload" accept="image/*" class="wallpaperUpload">
+            </div>
+
+            <div class="solidColorSection">
+                <p><strong>Or Choose a Solid Color:</strong></p>
+                <div class="colorPickerContainer">
+                    <input type="color" id="wallpaperColor" class="wallpaperColorPicker" value="#1a1a2e">
+                    <button id="applyColorBtn" class="wallpaperButton">Apply Color</button>
+                </div>
+            </div>
         </div>
     </div>
 

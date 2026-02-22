@@ -209,31 +209,78 @@ function dragElement(element, handle) {
     var currentX = 0;
     var currentY = 0;
     var header = handle;
+    var isDragging = false;
 
-    header.onmousedown = startDragging;
+    // Mouse events
+    header.onmousedown = startDraggingMouse;
 
-    function startDragging(e) {
+    // Touch events for mobile/tablet
+    header.addEventListener('touchstart', startDraggingTouch, false);
+
+    function startDraggingMouse(e) {
+        if (e.button !== 0) return; // Only left mouse button
         e.preventDefault();
         initialX = e.clientX;
         initialY = e.clientY;
+        isDragging = true;
         document.onmouseup = stopDragging;
-        document.onmousemove = handleDrag;
+        document.onmousemove = handleDragMouse;
+    }
+
+    function startDraggingTouch(e) {
+        if (e.touches.length !== 1) return;
+        e.preventDefault();
+        var touch = e.touches[0];
+        initialX = touch.clientX;
+        initialY = touch.clientY;
+        isDragging = true;
+        document.addEventListener('touchend', stopDragging, false);
+        document.addEventListener('touchmove', handleDragTouch, false);
     }
 
     // Calculate and apply new position as mouse moves
-    function handleDrag(e) {
+    function handleDragMouse(e) {
+        if (!isDragging) return;
         e.preventDefault();
         currentX = initialX - e.clientX;
         currentY = initialY - e.clientY;
         initialX = e.clientX;
         initialY = e.clientY;
-        element.style.top = (element.offsetTop - currentY) + "px";
-        element.style.left = (element.offsetLeft - currentX) + "px";
+        updatePosition();
+    }
+
+    function handleDragTouch(e) {
+        if (!isDragging || e.touches.length !== 1) return;
+        e.preventDefault();
+        var touch = e.touches[0];
+        currentX = initialX - touch.clientX;
+        currentY = initialY - touch.clientY;
+        initialX = touch.clientX;
+        initialY = touch.clientY;
+        updatePosition();
+    }
+
+    function updatePosition() {
+        var newTop = element.offsetTop - currentY;
+        var newLeft = element.offsetLeft - currentX;
+        
+        // Keep window within viewport bounds
+        var maxTop = window.innerHeight - element.offsetHeight;
+        var maxLeft = window.innerWidth - element.offsetWidth;
+        
+        newTop = Math.max(0, Math.min(newTop, maxTop));
+        newLeft = Math.max(0, Math.min(newLeft, maxLeft));
+        
+        element.style.top = newTop + "px";
+        element.style.left = newLeft + "px";
     }
 
     function stopDragging() {
+        isDragging = false;
         document.onmouseup = null;
         document.onmousemove = null;
+        document.removeEventListener('touchend', stopDragging, false);
+        document.removeEventListener('touchmove', handleDragTouch, false);
     }
 }
 
@@ -404,3 +451,299 @@ if (contactOpen) {
         openWindow(contactWindow);
     });
 }
+
+// Wallpaper changer
+var wallpaperWindow = document.querySelector("#wallpaperWindow");
+var wallpaperClose = document.querySelector("#wallpaperClose");
+var wallpaperOpen = document.querySelector("#wallpaperIcon");
+var wallpaperHeader = document.querySelector("#wallpaperHeader");
+var wallpaperUpload = document.querySelector("#wallpaperUpload");
+var wallpaperColor = document.querySelector("#wallpaperColor");
+var applyColorBtn = document.querySelector("#applyColorBtn");
+
+// Function to apply a wallpaper image
+function applyWallpaperImage(imageUrl) {
+    document.body.style.backgroundImage = "url('" + imageUrl + "')";
+    document.body.style.backgroundColor = "";
+    document.querySelector(".lockScreen").style.backgroundImage = "url('" + imageUrl + "')";
+    document.querySelector(".lockScreen").style.backgroundColor = "";
+    localStorage.setItem("customWallpaper", imageUrl);
+    localStorage.removeItem("wallpaperColor");
+}
+
+// make wallpaper window draggable
+dragElement(wallpaperWindow, wallpaperHeader);
+
+// Handle wallpaper window open/close
+if (wallpaperClose) {
+    wallpaperClose.addEventListener("click", function() {
+        closeWindow(wallpaperWindow);
+    });
+}
+
+if (wallpaperOpen) {
+    wallpaperOpen.addEventListener("click", function() {
+        openWindow(wallpaperWindow);
+    });
+}
+
+// Handle preset buttons
+var presetButtons = document.querySelectorAll(".presetButton");
+presetButtons.forEach(function(button) {
+    var presetUrl = button.getAttribute("data-preset");
+    button.style.backgroundImage = "url('" + presetUrl + "')";
+    button.addEventListener("click", function() {
+        applyWallpaperImage(presetUrl);
+    });
+});
+
+// file upload for custom wallpaper
+if (wallpaperUpload) {
+    wallpaperUpload.addEventListener("change", function(e) {
+        var file = e.target.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                var wallpaperUrl = event.target.result;
+                applyWallpaperImage(wallpaperUrl);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+}
+
+// color-based wallpaper
+if (applyColorBtn) {
+    applyColorBtn.addEventListener("click", function() {
+        var color = wallpaperColor.value;
+        document.body.style.backgroundImage = "none";
+        document.body.style.backgroundColor = color;
+        document.querySelector(".lockScreen").style.backgroundImage = "none";
+        document.querySelector(".lockScreen").style.backgroundColor = color;
+        localStorage.setItem("wallpaperColor", color);
+        localStorage.removeItem("customWallpaper");
+    });
+}
+
+// load wallpaper stuffs on page load
+window.addEventListener("load", function() {
+    var customWallpaper = localStorage.getItem("customWallpaper");
+    var wallpaperColor = localStorage.getItem("wallpaperColor");
+    
+    if (customWallpaper) {
+        document.body.style.backgroundImage = "url('" + customWallpaper + "')";
+        document.querySelector(".lockScreen").style.backgroundImage = "url('" + customWallpaper + "')";
+    } else if (wallpaperColor) {
+        document.body.style.backgroundImage = "none";
+        document.body.style.backgroundColor = wallpaperColor;
+        document.querySelector(".lockScreen").style.backgroundImage = "none";
+        document.querySelector(".lockScreen").style.backgroundColor = wallpaperColor;
+        document.querySelector("#wallpaperColor").value = wallpaperColor;
+    } else {
+        // Set default wallpaper
+        applyWallpaperImage("wallpapers/wallpaper1.png");
+    }
+});
+
+// Snake Game Logic
+const snakeGame = {
+    canvas: null,
+    ctx: null,
+    gridSize: 20,
+    tileCount: 20,
+    snake: [],
+    food: { x: 15, y: 15 },
+    dx: 0,
+    dy: 0,
+    score: 0,
+    highScore: 0,
+    gameLoop: null,
+    gameSpeed: 100,
+
+    init: function() {
+        this.canvas = document.getElementById('snakeCanvas');
+        this.ctx = this.canvas.getContext('2d');
+        this.loadHighScore();
+        this.reset();
+        
+        // Add keyboard controls
+        document.addEventListener('keydown', (e) => {
+            if (snakeWindow.style.display !== 'flex') return;
+            
+            switch(e.key) {
+                case 'ArrowUp':
+                    if (this.dy === 0) { this.dx = 0; this.dy = -1; }
+                    e.preventDefault();
+                    break;
+                case 'ArrowDown':
+                    if (this.dy === 0) { this.dx = 0; this.dy = 1; }
+                    e.preventDefault();
+                    break;
+                case 'ArrowLeft':
+                    if (this.dx === 0) { this.dx = -1; this.dy = 0; }
+                    e.preventDefault();
+                    break;
+                case 'ArrowRight':
+                    if (this.dx === 0) { this.dx = 1; this.dy = 0; }
+                    e.preventDefault();
+                    break;
+            }
+        });
+
+        // Add start button handler
+        document.getElementById('snakeStartBtn').addEventListener('click', () => {
+            this.start();
+            document.getElementById('snakeStartBtn').style.display = 'none';
+            document.getElementById('snakeRestartBtn').style.display = 'inline-block';
+        });
+
+        // Add restart button handler
+        document.getElementById('snakeRestartBtn').addEventListener('click', () => {
+            this.reset();
+            this.start();
+        });
+    },
+
+    reset: function() {
+        this.snake = [
+            { x: 10, y: 10 },
+            { x: 9, y: 10 },
+            { x: 8, y: 10 }
+        ];
+        this.dx = 1;
+        this.dy = 0;
+        this.score = 0;
+        this.updateScore();
+        this.placeFood();
+        clearInterval(this.gameLoop);
+    },
+
+    start: function() {
+        clearInterval(this.gameLoop);
+        this.gameLoop = setInterval(() => this.update(), this.gameSpeed);
+    },
+
+    update: function() {
+        // Move snake
+        const head = { x: this.snake[0].x + this.dx, y: this.snake[0].y + this.dy };
+
+        // Check wall collision
+        if (head.x < 0 || head.x >= this.tileCount || head.y < 0 || head.y >= this.tileCount) {
+            this.gameOver();
+            return;
+        }
+
+        // Check self collision
+        for (let segment of this.snake) {
+            if (head.x === segment.x && head.y === segment.y) {
+                this.gameOver();
+                return;
+            }
+        }
+
+        this.snake.unshift(head);
+
+        // Check food collision
+        if (head.x === this.food.x && head.y === this.food.y) {
+            this.score++;
+            this.updateScore();
+            this.placeFood();
+        } else {
+            this.snake.pop();
+        }
+
+        this.draw();
+    },
+
+    draw: function() {
+        // Clear canvas
+        this.ctx.fillStyle = '#f0f0f0';
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+        // Draw grid
+        this.ctx.strokeStyle = '#e0e0e0';
+        this.ctx.lineWidth = 1;
+        for (let i = 0; i <= this.tileCount; i++) {
+            this.ctx.beginPath();
+            this.ctx.moveTo(i * this.gridSize, 0);
+            this.ctx.lineTo(i * this.gridSize, this.canvas.height);
+            this.ctx.stroke();
+            this.ctx.beginPath();
+            this.ctx.moveTo(0, i * this.gridSize);
+            this.ctx.lineTo(this.canvas.width, i * this.gridSize);
+            this.ctx.stroke();
+        }
+
+        // Draw snake
+        this.snake.forEach((segment, index) => {
+            this.ctx.fillStyle = index === 0 ? '#2E7D32' : '#4CAF50';
+            this.ctx.fillRect(
+                segment.x * this.gridSize + 1,
+                segment.y * this.gridSize + 1,
+                this.gridSize - 2,
+                this.gridSize - 2
+            );
+        });
+
+        // Draw food
+        this.ctx.fillStyle = '#F44336';
+        this.ctx.fillRect(
+            this.food.x * this.gridSize + 1,
+            this.food.y * this.gridSize + 1,
+            this.gridSize - 2,
+            this.gridSize - 2
+        );
+    },
+
+    placeFood: function() {
+        let validPosition = false;
+        while (!validPosition) {
+            this.food = {
+                x: Math.floor(Math.random() * this.tileCount),
+                y: Math.floor(Math.random() * this.tileCount)
+            };
+            validPosition = !this.snake.some(segment => 
+                segment.x === this.food.x && segment.y === this.food.y
+            );
+        }
+    },
+
+    updateScore: function() {
+        document.getElementById('snakeScoreValue').textContent = this.score;
+    },
+
+    loadHighScore: function() {
+        const saved = localStorage.getItem('snakeHighScore');
+        this.highScore = saved ? parseInt(saved) : 0;
+        document.getElementById('snakeHighScoreValue').textContent = this.highScore;
+    },
+
+    updateHighScore: function() {
+        if (this.score > this.highScore) {
+            this.highScore = this.score;
+            localStorage.setItem('snakeHighScore', this.highScore);
+            document.getElementById('snakeHighScoreValue').textContent = this.highScore;
+        }
+    },
+
+    gameOver: function() {
+        clearInterval(this.gameLoop);
+        this.updateHighScore();
+        this.ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.fillStyle = 'white';
+        this.ctx.font = '30px cursive';
+        this.ctx.textAlign = 'center';
+        this.ctx.fillText('Game Over!', this.canvas.width / 2, this.canvas.height / 2 - 20);
+        this.ctx.font = '20px cursive';
+        this.ctx.fillText('Score: ' + this.score, this.canvas.width / 2, this.canvas.height / 2 + 20);
+    }
+};
+
+// Initialize snake game when window opens
+snakeIcon.addEventListener('click', function() {
+    if (!snakeGame.canvas) {
+        snakeGame.init();
+        snakeGame.draw();
+    }
+});

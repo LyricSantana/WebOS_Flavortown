@@ -1,9 +1,19 @@
 * {
     font-family: cursive;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    touch-action: pan-x pan-y;
 }
 
 body {
-    background-image: url(./wallpaper.png);
+    background-image: url(wallpapers/wallpaper1.png);
     background-size: cover;
     color: #2a2a2a;
     overflow: hidden;
@@ -15,7 +25,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url(./wallpaper.png);
+    background-image: url(wallpapers/wallpaper1.png);
     background-size: cover;
     z-index: 9999;
     display: flex;
@@ -33,12 +43,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: clamp(15px, 5vw, 30px);
     text-align: center;
+    padding: clamp(20px, 2vw, 40px);
 }
 
 .lockScreenTime {
-    font-size: 80px;
+    font-size: clamp(48px, 15vw, 80px);
     font-weight: bold;
     color: rgba(255, 255, 255);
     margin: 0;
@@ -46,7 +57,7 @@ body {
 }
 
 .welcomeMessage {
-    font-size: 28px;
+    font-size: clamp(18px, 5vw, 28px);
     color: rgba(255, 255, 255);
     margin: 0;
     letter-spacing: 1px;
@@ -57,16 +68,16 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
-    margin-top: 20px;
+    gap: clamp(8px, 2vw, 15px);
+    margin-top: clamp(10px, 2vw, 20px);
 }
 
 .unlockButton {
     background: rgba(255, 255, 255, 0.15);
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
-    width: 70px;
-    height: 70px;
+    width: clamp(50px, 12vw, 70px);
+    height: clamp(50px, 12vw, 70px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -74,6 +85,9 @@ body {
     transition: all 0.3s ease;
     color: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(10px);
+    min-width: 50px;
+    min-height: 50px;
+    touch-action: manipulation;
 }
 
 .unlockButton:hover {
@@ -88,6 +102,8 @@ body {
 
 .upArrow {
     animation: floatUp 1.5s ease-in-out infinite;
+    width: clamp(30px, 8vw, 40px);
+    height: clamp(30px, 8vw, 40px);
 }
 
 @keyframes floatUp {
@@ -100,7 +116,7 @@ body {
 }
 
 .unlockText {
-    font-size: 16px;
+    font-size: clamp(12px, 3vw, 16px);
     color: rgba(255, 255, 255);
     margin: 0;
     letter-spacing: 0.5px;
@@ -108,10 +124,11 @@ body {
 
 .wallpaperCredit {
     position: fixed;
-    top: 60px;
-    right: 60px;
-    width: 120px;
-    height: 120px;
+    top: clamp(20px, 5vw, 100px);
+    right: clamp(10px, 4vw, 60px);
+    width: clamp(150px, 30vw, 250px);
+    height: auto;
+    min-height: clamp(80px, 15vw, 120px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -121,14 +138,45 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
     color: rgba(255, 255, 255, 0.8);
-    font-size: 16px;
+    font-size: clamp(12px, 3.5vw, 20px);
     text-decoration: none;
     line-height: 1.1;
+    padding: clamp(10px, 2vw, 15px);
     transition: all 0.3s ease;
     z-index: 9999;
 }
 
 .wallpaperCredit:hover {
+    background: rgba(0, 0, 0, 0.5);
+    color: rgba(255, 255, 255, 1);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.flavortownNotice {
+    position: fixed;
+    top: clamp(20px, 5vw, 100px);
+    left: clamp(10px, 4vw, 60px);
+    width: clamp(150px, 30vw, 250px);
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: clamp(12px, 3.5vw, 18px);
+    line-height: 1.3;
+    padding: clamp(10px, 2vw, 20px);
+    z-index: 9999;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.flavortownNotice:hover {
     background: rgba(0, 0, 0, 0.5);
     color: rgba(255, 255, 255, 1);
     border-color: rgba(255, 255, 255, 0.4);
@@ -144,49 +192,56 @@ body {
 }
 
 #displayTime {
-    font-size: 100px;
+    font-size: clamp(48px, 15vw, 100px);
     font-weight: bold;
-    color: rgba(255, 255, 255);
+    color: rgba(255, 255, 255, 0.9);
     margin: 0;
     text-align: center;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .bottomBar {
     position: fixed;
-    bottom: 20px;
+    bottom: clamp(10px, 2vw, 20px);
     left: 50%;
     transform: translateX(-50%);
-    padding: 10px 30px;
+    padding: clamp(8px, 2vw, 12px) clamp(40px, 8vw, 150px);
     background-color: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
     border: 2px solid rgba(42, 42, 42, 0.25);
     border-radius: 20px;
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: clamp(30px, 10vw, 400px);
     z-index: 100;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 #lyricOS, #bottomDate {
     color: #ffffff;
     margin: 0;
-    font-size: 18px;
+    font-size: clamp(12px, 2.5vw, 18px);
 }
 
 .desktopIcon {
     position: absolute;
-    left: 24px;
+    left: clamp(10px, 2vw, 24px);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
-    padding: 8px 10px;
+    justify-content: center;
+    gap: clamp(4px, 1vw, 6px);
+    padding: clamp(6px, 1.5vw, 8px) clamp(8px, 1.5vw, 10px);
     border-radius: 10px;
     background: transparent;
     color: #ffffff;
     cursor: pointer;
     user-select: none;
     border: none;
+    transition: all 0.2s ease;
+    min-width: 44px;
+    min-height: 44px;
 }
 
 .desktopIcon:hover {
@@ -195,134 +250,150 @@ body {
 }
 
 .desktopIconImage {
-    width: 75px;
-    height: 75px;
+    width: clamp(50px, 12vw, 75px);
+    height: clamp(50px, 12vw, 75px);
+    border-radius: 12px;
+}
+
+#musicIcon .desktopIconImage {
+    border-radius: 12px;
 }
 
 .desktopIconLabel {
-    font-size: 15px;
+    font-size: clamp(11px, 2.5vw, 15px);
     font-weight: 600;
+    text-align: center;
+    max-width: clamp(50px, 12vw, 85px);
 }
 
 #aboutMeIcon { 
-    top: 30px; 
+    top: clamp(15px, 3vw, 30px); 
 }
 
 #musicIcon { 
-    top: 160px; 
+    top: clamp(120px, 20vw, 160px); 
 }
 
 #mediaIcon { 
-    top: 290px; 
+    top: clamp(220px, 35vw, 290px); 
 }
 
 #snakeIcon { 
-    top: 30px;
+    top: clamp(15px, 3vw, 30px);
     left: auto;
-    right: 24px;
+    right: clamp(10px, 2vw, 24px);
 }
 
 #flappyIcon { 
-    top: 160px;
+    top: clamp(120px, 20vw, 160px);
     left: auto;
-    right: 24px;
+    right: clamp(10px, 2vw, 24px);
 }
 
 #dinoIcon { 
-    top: 290px;
+    top: clamp(220px, 35vw, 290px);
     left: auto;
-    right: 24px;
+    right: clamp(10px, 2vw, 32px);
 }
 
 #interestsIcon { 
-    top: 420px; 
+    top: clamp(320px, 50vw, 430px); 
 }
 
 #contactIcon {
-    top: 550px;
+    top: clamp(420px, 65vw, 560px);
+}
+
+#wallpaperIcon {
+    top: clamp(520px, 80vw, 690px);
 }
 
 .window {
     position: absolute;
     display: flex;
     flex-direction: column;
-    width: 500px;
-    padding: 0 30px;
+    width: clamp(90vw, 90%, 500px);
+    max-width: 90vw;
+    max-height: 90vh;
+    padding: 0 clamp(15px, 3vw, 30px);
     background-color: #ffffff;
     border: 2px solid #dddddd;
     border-radius: 12px;
     z-index: 10;
+    overflow-y: auto;
 }
 
 #aboutMeWindow {
-    top: 80px;
-    left: 120px;
-    width: 650px;
+    top: clamp(40px, 10vh, 80px);
+    left: clamp(10px, 5vw, 120px);
+    width: clamp(90vw, 90%, 650px);
     display: none;
 }
 
 #musicWindow {
-    top: 130px;
-    left: 200px;
-    width: 700px;
-    height: 775px;
+    top: clamp(40px, 10vh, 130px);
+    left: clamp(10px, 5vw, 200px);
+    width: clamp(90vw, 90%, 700px);
+    height: clamp(400px, 80vh, 725px);
     display: none;
 }
 
 #mediaWindow {
-    top: 150px;
-    left: 550px;
-    height: 360px;
+    top: clamp(40px, 10vh, 150px);
+    left: clamp(10px, 5vw, 550px);
+    width: clamp(90vw, 90%, 600px);
+    height: clamp(300px, 70vh, 360px);
     overflow-y: auto;
     display: none;
 }
 
 #gamesWindow {
-    top: 100px;
-    left: 300px;
-    height: 350px;
+    top: clamp(40px, 10vh, 100px);
+    left: clamp(10px, 5vw, 300px);
+    width: clamp(90vw, 90%, 600px);
+    height: clamp(300px, 70vh, 350px);
     overflow-y: auto;
     display: none;
 }
 
 #snakeWindow {
-    top: 100px;
-    left: 150px;
-    width: 600px;
-    height: 500px;
+    top: clamp(40px, 10vh, 100px);
+    left: clamp(10px, 5vw, 150px);
+    width: clamp(90vw, 90%, 500px);
+    height: clamp(400px, 80vh, 575px);
     display: none;
 }
 
 #flappyWindow {
-    top: 150px;
-    left: 300px;
-    width: 600px;
-    height: 500px;
+    top: clamp(40px, 10vh, 150px);
+    left: clamp(10px, 5vw, 300px);
+    width: clamp(90vw, 90%, 600px);
+    height: clamp(350px, 75vh, 500px);
     display: none;
 }
 
 #dinoWindow {
-    top: 200px;
-    left: 450px;
-    width: 600px;
-    height: 500px;
+    top: clamp(40px, 10vh, 200px);
+    left: clamp(10px, 5vw, 450px);
+    width: clamp(90vw, 90%, 600px);
+    height: clamp(350px, 75vh, 500px);
     display: none;
 }
 
 #interestsWindow {
-    top: 80px;
-    left: 850px;
-    width: 650px;
-    height: 350px;
+    top: clamp(40px, 10vh, 80px);
+    left: clamp(10px, 5vw, 850px);
+    width: clamp(90vw, 90%, 650px);
+    height: clamp(300px, 70vh, 350px);
     overflow-y: auto;
     display: none;
 }
 
 #contactWindow {
-    top: 120px;
-    left: 400px;
-    width: 450px;
-    height: 600px;
+    top: clamp(40px, 10vh, 120px);
+    left: clamp(10px, 5vw, 400px);
+    width: clamp(90vw, 90%, 450px);
+    height: clamp(350px, 75vh, 600px);
     display: none;
 }
 
@@ -331,29 +402,40 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 0 -30px;
-    padding: 0 30px;
+    margin: 0 clamp(-15px, -3vw, -30px);
+    padding: 0 clamp(15px, 3vw, 30px);
     background-color: #e8e8e8;
     border-bottom: 2px solid rgba(42, 42, 42, 0.25);
     border-radius: 12px 12px 0 0;
     cursor: grab;
+    min-height: clamp(40px, 8vh, 50px);
+    padding-top: clamp(8px, 1.5vh, 12px);
+    padding-bottom: clamp(8px, 1.5vh, 12px);
+    touch-action: none;
+    user-select: none;
 }
 
 .headertext {
-    font-size: 18px;
+    font-size: clamp(14px, 3vw, 18px);
     font-weight: 600;
     margin: 0;
 }
 
 .closebutton {
-    width: 20px;
-    height: 20px;
+    width: clamp(16px, 3vw, 20px);
+    height: clamp(16px, 3vw, 20px);
     background-color: #ec6b5e;
     border: 1px solid rgba(42, 42, 42, 0.25);
     border-radius: 50%;
     cursor: pointer;
     position: relative;
-    margin-right: -18px;
+    margin-right: clamp(-12px, -2vw, -18px);
+    flex-shrink: 0;
+    min-width: 36px;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .closebutton:hover {
@@ -380,33 +462,42 @@ body {
 }
 
 .window h2 {
-    margin: 6px 0 3px;
+    margin: clamp(4px, 1vh, 6px) 0 clamp(2px, 0.5vh, 3px);
+    font-size: clamp(16px, 3vw, 22px);
 }
 
 .window h3 {
-    margin: 15px 0 10px;
-    font-size: 18px;
+    margin: clamp(10px, 2vh, 15px) 0 clamp(6px, 1.5vh, 10px);
+    font-size: clamp(14px, 2.5vw, 18px);
     font-weight: 600;
 }
 
 .window p {
-    padding: 10px 0;
+    padding: clamp(6px, 1.5vh, 10px) 0;
+    font-size: clamp(12px, 2vw, 16px);
+    line-height: 1.5;
 }
 
 .gameContainer {
-    padding: 20px;
+    padding: clamp(15px, 2vh, 20px);
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
-    font-size: 18px;
-    color: #666;
+    font-size: clamp(14px, 2.5vw, 18px);
+    color: #666666;
+}
+
+.musicWindowContent {
+    text-align: center;
 }
 
 .albumCover {
-    width: 50%;
+    width: min(50%, 200px);
     border-radius: 8px;
-    margin-bottom: 15px;
+    margin-bottom: clamp(10px, 2vh, 15px);
+    margin-left: auto;
+    margin-right: auto;
     display: none;
 }
 
@@ -416,7 +507,7 @@ body {
 .interestsGrid {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: clamp(4px, 1vw, 5px);
 }
 
 .artist,
@@ -424,9 +515,9 @@ body {
 .game,
 .interest {
     background-color: #f0f0f0;
-    padding: 6px 14px;
+    padding: clamp(4px, 1vw, 6px) clamp(10px, 2vw, 14px);
     border-radius: 20px;
-    font-size: 14px;
+    font-size: clamp(11px, 2vw, 14px);
     border: 1px solid #dddddd;
     transition: all 0.2s ease;
 }
@@ -436,30 +527,451 @@ body {
 .game:hover,
 .interest:hover {
     background-color: #e0e0e0;
-    border-color: #666;
+    border-color: #666666;
 }
 
 .contactLinks {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
+    gap: clamp(8px, 1.5vh, 10px);
+    margin-top: clamp(8px, 1.5vh, 10px);
 }
 
 .contactLink {
     background-color: #f0f0f0;
-    padding: 12px 18px;
+    padding: clamp(10px, 2vh, 12px) clamp(14px, 2vw, 18px);
     border-radius: 8px;
     border: 1px solid #dddddd;
     text-decoration: none;
     color: #2a2a2a;
-    font-size: 16px;
+    font-size: clamp(14px, 2.5vw, 16px);
     transition: all 0.2s ease;
     display: block;
 }
 
 .contactLink:hover {
     background-color: #e0e0e0;
-    border-color: #666;
+    border-color: #666666;
     transform: translateX(5px);
+}
+#wallpaperWindow {
+    top: clamp(40px, 10vh, 200px);
+    left: clamp(10px, 5vw, 400px);
+    width: clamp(90vw, 90%, 600px);
+    height: clamp(350px, 75vh, 490px);
+    display: none;
+}
+
+.wallpaperContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+}
+
+.presetsSection,
+.customImageSection,
+.solidColorSection {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.presetsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: clamp(8px, 2vw, 10px);
+}
+
+.presetButton {
+    padding: 0;
+    width: 100%;
+    aspect-ratio: 1;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #dddddd;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0;
+    min-height: clamp(60px, 12vw, 120px);
+}
+
+.presetButton:hover {
+    background-color: #e0e0e0;
+    border-color: #999999;
+}
+
+.presetButton:active {
+    background-color: #d0d0d0;
+    transform: scale(0.98);
+}
+
+.wallpaperUpload {
+    padding: clamp(8px, 1.5vh, 10px);
+    border: 2px dashed #dddddd;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: clamp(12px, 2vw, 14px);
+}
+
+.wallpaperUpload:hover {
+    border-color: #999999;
+}
+
+.colorPickerContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: clamp(8px, 2vw, 10px);
+}
+
+.wallpaperColorPicker {
+    width: clamp(40px, 15vw, 60px);
+    height: clamp(30px, 8vw, 40px);
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.wallpaperButton {
+    padding: clamp(8px, 1.5vh, 10px) clamp(12px, 2vw, 15px);
+    background-color: #f0f0f0;
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: clamp(12px, 2vw, 14px);
+    transition: all 0.2s ease;
+}
+
+.wallpaperButton:hover {
+    background-color: #e0e0e0;
+    border-color: #666;
+}
+
+.wallpaperButton:active {
+    background-color: #d0d0d0;
+}
+
+.presetsSection p,
+.customImageSection p,
+.solidColorSection p {
+    margin: clamp(4px, 1vh, 5px) 0;
+    font-size: clamp(12px, 2vw, 14px);
+}
+
+.snakeGameUI {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(8px, 1.5vw, 10px);
+    padding: clamp(15px, 2vh, 20px);
+    width: 100%;
+}
+
+.snakeControls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(10px, 2vw, 20px);
+    width: 100%;
+}
+
+.snakeScore {
+    font-size: clamp(16px, 2.5vw, 20px);
+    font-weight: bold;
+    color: #2a2a2a;
+}
+
+#snakeScoreValue {
+    color: #4CAF50;
+}
+
+.gameButton {
+    padding: clamp(8px, 1.5vh, 10px) clamp(15px, 2vw, 20px);
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: clamp(12px, 2vw, 16px);
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gameButton:hover {
+    background-color: #45a049;
+}
+
+.gameButton:active {
+    background-color: #3d8b40;
+}
+
+#snakeCanvas {
+    border: 3px solid #2a2a2a;
+    background-color: #f0f0f0;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    width: clamp(250px, 90vw, 400px);
+    height: clamp(250px, 90vw, 400px);
+}
+
+.snakeInstructions {
+    font-size: clamp(12px, 2vw, 14px);
+    color: #666;
+    font-style: italic;
+    text-align: center;
+}
+
+/* ===== MEDIA QUERIES FOR RESPONSIVENESS ===== */
+
+/* Mobile devices (320px - 480px) */
+@media (max-width: 480px) {
+    .desktopIcon {
+        left: clamp(5px, 1vw, 10px);
+        gap: 3px;
+        padding: clamp(4px, 1vw, 6px) clamp(6px, 1vw, 8px);
+    }
+
+    .desktopIconImage {
+        width: clamp(40px, 9vw, 50px);
+        height: clamp(40px, 9vw, 50px);
+    }
+
+    .desktopIconLabel {
+        font-size: clamp(9px, 2vw, 12px);
+        max-width: clamp(40px, 9vw, 60px);
+    }
+
+    #aboutMeIcon {
+        top: clamp(5px, 2vh, 20px);
+    }
+
+    #musicIcon {
+        top: clamp(90px, 18vh, 120px);
+    }
+
+    #mediaIcon {
+        top: clamp(170px, 32vh, 220px);
+    }
+
+    #interestsIcon {
+        top: clamp(250px, 46vh, 320px);
+    }
+
+    #contactIcon {
+        top: clamp(330px, 60vh, 410px);
+    }
+
+    #wallpaperIcon {
+        top: clamp(410px, 74vh, 500px);
+    }
+
+    .window {
+        width: 95vw;
+        max-width: 95vw;
+        max-height: 85vh;
+        padding: 0 clamp(10px, 2vw, 15px);
+    }
+
+    .wallpaperCredit,
+    .flavortownNotice {
+        display: none;
+    }
+
+    .bottomBar {
+        gap: clamp(15px, 5vw, 30px);
+        padding: clamp(6px, 1.5vw, 10px) clamp(20px, 5vw, 30px);
+        flex-direction: column;
+    }
+
+    .snakeControls {
+        flex-direction: column;
+        gap: clamp(8px, 1.5vw, 12px);
+    }
+
+    #snakeCanvas {
+        width: clamp(180px, 85vw, 300px);
+        height: clamp(180px, 85vw, 300px);
+    }
+
+    .presetsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Small tablets (480px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .desktopIcon {
+        left: clamp(8px, 1.5vw, 16px);
+    }
+
+    .desktopIconImage {
+        width: clamp(50px, 11vw, 65px);
+        height: clamp(50px, 11vw, 65px);
+    }
+
+    .desktopIconLabel {
+        font-size: clamp(10px, 2.2vw, 13px);
+    }
+
+    #musicIcon {
+        top: clamp(110px, 20vh, 150px);
+    }
+
+    #mediaIcon {
+        top: clamp(200px, 36vh, 260px);
+    }
+
+    #interestsIcon {
+        top: clamp(290px, 50vh, 370px);
+    }
+
+    #contactIcon {
+        top: clamp(380px, 64vh, 460px);
+    }
+
+    #wallpaperIcon {
+        top: clamp(470px, 78vh, 550px);
+    }
+
+    .window {
+        width: 90vw;
+        max-width: 90vw;
+        max-height: 85vh;
+    }
+
+    #musicWindow,
+    #mediaWindow,
+    #snakeWindow,
+    #flappyWindow,
+    #dinoWindow,
+    #interestsWindow,
+    #contactWindow,
+    #wallpaperWindow {
+        left: clamp(20px, 5vw, 40px) !important;
+    }
+
+    .presetsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #snakeCanvas {
+        width: clamp(200px, 80vw, 350px);
+        height: clamp(200px, 80vw, 350px);
+    }
+}
+
+/* Tablets and small laptops (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .desktopIcon {
+        left: clamp(12px, 2vw, 20px);
+    }
+
+    .desktopIconImage {
+        width: clamp(60px, 12vw, 70px);
+        height: clamp(60px, 12vw, 70px);
+    }
+
+    #snakeIcon {
+        right: clamp(12px, 2vw, 20px);
+    }
+
+    #flappyIcon {
+        right: clamp(12px, 2vw, 20px);
+    }
+
+    #dinoIcon {
+        right: clamp(12px, 2vw, 20px);
+    }
+
+    .wallpaperCredit {
+        width: clamp(140px, 25vw, 200px);
+        font-size: clamp(12px, 3vw, 16px);
+        top: clamp(20px, 5vw, 80px);
+        right: clamp(15px, 3vw, 40px);
+    }
+
+    .flavortownNotice {
+        width: clamp(140px, 25vw, 200px);
+        font-size: clamp(12px, 3vw, 16px);
+        top: clamp(20px, 5vw, 80px);
+        left: clamp(15px, 3vw, 40px);
+    }
+
+    .presetsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktops and large screens (1025px+) */
+@media (min-width: 1025px) {
+    .desktopIcon {
+        left: 24px;
+    }
+
+    .desktopIconImage {
+        width: 75px;
+        height: 75px;
+    }
+
+    .desktopIconLabel {
+        font-size: 15px;
+    }
+
+    #snakeIcon,
+    #flappyIcon,
+    #dinoIcon {
+        right: 24px;
+    }
+
+    #wallpaperCredit,
+    .flavortownNotice {
+        display: flex;
+    }
+
+    .presetsGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    #displayTime {
+        font-size: 100px;
+    }
+}
+
+/* Ultra-small devices (less than 320px width - rare but covered) */
+@media (max-width: 320px) {
+    .lockScreenTime {
+        font-size: clamp(36px, 12vw, 48px);
+    }
+
+    .welcomeMessage {
+        font-size: clamp(14px, 4vw, 20px);
+    }
+
+    .desktopIcon {
+        left: 5px;
+    }
+
+    .desktopIconImage {
+        width: 35px;
+        height: 35px;
+    }
+
+    .window {
+        width: 98vw;
+        max-height: 80vh;
+    }
+
+    .bottomBar {
+        font-size: 11px;
+        padding: 6px 15px;
+    }
 }
