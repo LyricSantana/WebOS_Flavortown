@@ -42,6 +42,10 @@
         top: clamp(410px, 74vh, 500px);
     }
 
+    #notepadIcon {
+        top: clamp(490px, 88vh, 590px);
+    }
+
     .window {
         width: 95vw;
         max-width: 95vw;
@@ -118,6 +122,10 @@
         top: clamp(470px, 78vh, 550px);
     }
 
+    #notepadIcon {
+        top: clamp(560px, 92vh, 640px);
+    }
+
     .window {
         width: 90vw;
         max-width: 90vw;
@@ -131,7 +139,8 @@
     #dinoWindow,
     #interestsWindow,
     #contactWindow,
-    #wallpaperWindow {
+    #wallpaperWindow,
+    #notepadWindow {
         left: clamp(20px, 5vw, 40px) !important;
     }
 

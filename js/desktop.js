@@ -174,7 +174,8 @@ const windowConfigs = [
     { name: 'dino', elementId: '#dinoWindow', closeId: '#dinoClose', openId: '#dinoIcon', headerId: '#dinoHeader' },
     { name: 'interests', elementId: '#interestsWindow', closeId: '#interestsClose', openId: '#interestsIcon', headerId: '#interestsHeader' },
     { name: 'contact', elementId: '#contactWindow', closeId: '#contactClose', openId: '#contactIcon', headerId: '#contactHeader' },
-    { name: 'wallpaper', elementId: '#wallpaperWindow', closeId: '#wallpaperClose', openId: '#wallpaperIcon', headerId: '#wallpaperHeader' }
+    { name: 'wallpaper', elementId: '#wallpaperWindow', closeId: '#wallpaperClose', openId: '#wallpaperIcon', headerId: '#wallpaperHeader' },
+    { name: 'notepad', elementId: '#notepadWindow', closeId: '#notepadClose', openId: '#notepadIcon', headerId: '#notepadHeader' }
 ];
 
 windowConfigs.forEach(config => {

@@ -29,6 +29,7 @@
     <script src="js/music.js" defer></script>
     <script src="js/weather.js" defer></script>
     <script src="js/wallpaper.js" defer></script>
+    <script src="js/notepad.js" defer></script>
     <!-- games -->
     <script src="js/games/snake.js" defer></script>
     <script src="js/games/flappy.js" defer></script>
@@ -124,6 +125,12 @@
     <button class="desktopIcon" id="wallpaperIcon" type="button">
         <img src="icons/wallpaper.jpg" class="desktopIconImage">
         <span class="desktopIconLabel">Wallpaper</span>
+    </button>
+
+    <!-- Notepad icon -->
+    <button class="desktopIcon" id="notepadIcon" type="button">
+        <img src="icons/notes.png" class="desktopIconImage">
+        <span class="desktopIconLabel">Notepad</span>
     </button>
 
     <!-- Window Elements - These are the windows that pop up -->
@@ -256,7 +263,7 @@
 
     <!-- Dino Jump Run Game Window -->
     <div class="window" id="dinoWindow">
-        <div class="windowheader" id="dinoHeader">
+        <div class="windowheader" id="dinoHeader"
             <p class="headertext">Dino Jump Run</p>
             <div class="closebutton" id="dinoClose" aria-label="Close window"></div>
         </div>
@@ -359,6 +366,24 @@
                     <button id="applyColorBtn" class="wallpaperButton">Apply Color</button>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Notepad Window -->
+    <div class="window" id="notepadWindow">
+        <div class="windowheader" id="notepadHeader">
+            <p class="headertext">Notepad</p>
+            <div class="closebutton" id="notepadClose" aria-label="Close window"></div>
+        </div>
+        <div class="notepadContainer">
+            <div class="notepadControls">
+                <input type="text" id="notepadFilename" class="notepadFilenameInput" placeholder="document" maxlength="50">
+                <span class="notepadLabel">.txt</span>
+                <button id="notepadSaveBtn" class="notepadButton">Save</button>
+                <button id="notepadClearBtn" class="notepadButton clearBtn">Clear</button>
+                <span class="charCounter">Characters: <span id="charCount">0</span></span>
+            </div>
+            <textarea id="notepadTextarea" class="notepadTextarea" placeholder="Start typing..."></textarea>
         </div>
     </div>
 

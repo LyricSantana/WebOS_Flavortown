@@ -124,3 +124,7 @@
 #wallpaperIcon {
     top: clamp(520px, 80vw, 690px);
 }
+
+#notepadIcon {
+    top: clamp(620px, 95vw, 820px);
+}
