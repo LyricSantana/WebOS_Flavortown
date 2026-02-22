@@ -570,6 +570,10 @@ const snakeGame = {
         this.loadHighScore();
         this.reset();
         
+        // Touch/swipe variables
+        let touchStartX = 0;
+        let touchStartY = 0;
+        
         // Add keyboard controls
         document.addEventListener('keydown', (e) => {
             if (snakeWindow.style.display !== 'flex') return;
@@ -593,6 +597,41 @@ const snakeGame = {
                     break;
             }
         });
+        
+        // Add touch controls for mobile
+        this.canvas.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        }, false);
+        
+        this.canvas.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const touchEndY = e.changedTouches[0].clientY;
+            const diffX = touchEndX - touchStartX;
+            const diffY = touchEndY - touchStartY;
+            const threshold = 30;
+            
+            // Determine swipe direction
+            if (Math.abs(diffX) > Math.abs(diffY)) {
+                // Horizontal swipe
+                if (diffX > threshold && this.dx === 0) {
+                    // Swipe right
+                    this.dx = 1; this.dy = 0;
+                } else if (diffX < -threshold && this.dx === 0) {
+                    // Swipe left
+                    this.dx = -1; this.dy = 0;
+                }
+            } else {
+                // Vertical swipe
+                if (diffY > threshold && this.dy === 0) {
+                    // Swipe down
+                    this.dx = 0; this.dy = 1;
+                } else if (diffY < -threshold && this.dy === 0) {
+                    // Swipe up
+                    this.dx = 0; this.dy = -1;
+                }
+            }
+        }, false);
 
         // Add start button handler
         document.getElementById('snakeStartBtn').addEventListener('click', () => {
@@ -736,10 +775,10 @@ const snakeGame = {
         this.ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.fillStyle = 'white';
-        this.ctx.font = '30px cursive';
+        this.ctx.font = 'bold 30px "Poppins", sans-serif';
         this.ctx.textAlign = 'center';
         this.ctx.fillText('Game Over!', this.canvas.width / 2, this.canvas.height / 2 - 20);
-        this.ctx.font = '20px cursive';
+        this.ctx.font = '20px "Poppins", sans-serif';
         this.ctx.fillText('Score: ' + this.score, this.canvas.width / 2, this.canvas.height / 2 + 20);
     }
 };
