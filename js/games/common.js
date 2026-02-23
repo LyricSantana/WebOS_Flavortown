@@ -7,7 +7,7 @@ const gameUtils = {
         };
     },
 
-    setupGameButtons(prefix, startCallback, endCallback) {
+    setupGameButtons(prefix, startCallback, restartCallback, endCallback) {
         const { startBtn, restartBtn } = this.getButtonElements(prefix);
 
         if (startBtn) {
@@ -20,7 +20,8 @@ const gameUtils = {
 
         if (restartBtn) {
             restartBtn.addEventListener('click', () => {
-                startCallback();
+                const callback = restartCallback || startCallback;
+                callback();
                 restartBtn.style.display = 'inline-block';
             });
         }

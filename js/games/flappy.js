@@ -8,7 +8,7 @@ const flappyGame = {
     bird: {
         x: 50,
         y: 250,
-        width: 40,
+        width: 35,
         height: 30,
         velocity: 0,
         flapPower: -8,

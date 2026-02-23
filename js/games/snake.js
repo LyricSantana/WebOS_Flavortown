@@ -49,17 +49,33 @@ const snakeGame = {
         gameUtils.createTouchControls(this.canvas, (diffX, diffY) => {
             const threshold = 30;
             if (Math.abs(diffX) > Math.abs(diffY)) {
-                if (diffX > threshold && this.dx === 0) this.dx = 1;
-                else if (diffX < -threshold && this.dx === 0) this.dx = -1;
-            } else {
-                if (diffY > threshold && this.dy === 0) this.dy = 1;
-                else if (diffY < -threshold && this.dy === 0) this.dy = -1;
+                // Horizontal movement
+                if (diffX > threshold && this.dx === 0) {
+                    this.dx = 1;
+                    this.dy = 0;
+                } else if (diffX < -threshold && this.dx === 0) {
+                    this.dx = -1;
+                    this.dy = 0;
+                }
+            } else if (Math.abs(diffY) >= threshold) {
+                // Vertical movement - only process significant vertical swipes
+                if (diffY > threshold && this.dy === 0) {
+                    this.dx = 0;
+                    this.dy = 1;
+                } else if (diffY < -threshold && this.dy === 0) {
+                    this.dx = 0;
+                    this.dy = -1;
+                }
             }
         });
     },
 
     setupButtons() {
-        gameUtils.setupGameButtons('snake', () => this.start());
+        gameUtils.setupGameButtons('snake', () => this.start(), () => {
+            this.reset();
+            this.start();
+            this.draw();
+        });
     },
 
     reset() {
@@ -180,6 +196,8 @@ const snakeGame = {
             gameUtils.updateScoreDisplay('snakeHighScoreValue', this.highScore);
         }
 
+        // Draw final frame with game over text
+        this.draw();
         this.ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.fillStyle = 'white';
